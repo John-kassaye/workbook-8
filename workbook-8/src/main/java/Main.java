@@ -13,12 +13,18 @@ public class Main {
 
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/northwind",userName,pw);
 
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Products");
+        int id = 5;
+        String phone = "555";
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM northwind.Shippers WHERE ShipperId > ? or Phone LIKE ?;");
+        preparedStatement.setInt(1,id);
+        preparedStatement.setString(2,"%" + phone + "%");
         ResultSet rs = preparedStatement.executeQuery();
 
         while(rs.next()){
-            String name = rs.getString("ProductName");
-            System.out.println(name);
+            System.out.println("Id: " + rs.getString("ShipperId"));
+            System.out.println("Phone: " + rs.getString("CompanyName"));
+            System.out.println("Name: " + rs.getString("Phone"));
+
         }
 
         connection.close();
