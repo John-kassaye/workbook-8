@@ -1,3 +1,5 @@
+package monday;
+
 import java.sql.*;
 
 public class Main {
