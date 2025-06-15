@@ -6,14 +6,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class App {
-    static Scanner scanner = new Scanner(System.in);
+    private static LanguageDAO languageDAO;
+    private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-        BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setUrl("jdbc:mysql://localhost:3306/Sakila");
-        dataSource.setUsername(args[0]);
-        dataSource.setPassword(args[1]);
-
-        LanguageDAO languageDAO = new LanguageDAO(dataSource);
+        init(args);
 
         System.out.println("What do you want to do?");
         System.out.println("1) Get all languages");
@@ -66,5 +62,14 @@ public class App {
         for (Language language : languages){
             System.out.println(language.toString());
         }
+    }
+
+    public static void init(String[] args){
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setUrl("jdbc:mysql://localhost:3306/Sakila");
+        dataSource.setUsername(args[0]);
+        dataSource.setPassword(args[1]);
+
+        languageDAO = new LanguageDAO(dataSource);
     }
 }
