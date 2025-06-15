@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
+import javax.sql.DataSource;
+
 
 public class SakilaDbApp {
     static Scanner scanner = new Scanner(System.in);
@@ -19,13 +21,8 @@ public class SakilaDbApp {
 
         Actor actor = promptForActor();
 
-        BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setUrl("jdbc:mysql://localhost:3306/sakila");
-        dataSource.setUsername(args[0]);
-        dataSource.setPassword(args[1]);
-
         try (
-                Connection connection = dataSource.getConnection();
+                Connection connection = dataSource(args).getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
         ) {
             preparedStatement.setString(1, actor.getFirstName());
@@ -39,6 +36,14 @@ public class SakilaDbApp {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public static DataSource dataSource (String[] args){
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setUrl("jdbc:mysql://localhost:3306/sakila");
+        dataSource.setUsername(args[0]);
+        dataSource.setPassword(args[1]);
+        return dataSource;
     }
 
     public static Actor promptForActor() {
