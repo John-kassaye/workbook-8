@@ -1,4 +1,4 @@
-package Tuesday;
+package tuesday;
 
 import java.sql.*;
 

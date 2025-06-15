@@ -65,6 +65,10 @@ public class App {
     }
 
     public static void init(String[] args){
+        if (args.length != 2){
+            System.out.println("I need to parameters!");
+        }
+
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setUrl("jdbc:mysql://localhost:3306/Sakila");
         dataSource.setUsername(args[0]);

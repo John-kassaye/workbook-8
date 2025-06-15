@@ -30,10 +30,8 @@ public class Language {
 
     @Override
     public String toString() {
-        return "LanguageDAO{" +
-                "name='" + name + '\'' +
-                ", id=" + id +
-                '}';
+        return String.format("%-45s %s ", "\nName:", name) +
+                String.format("%-45s %d ", "\nId:", id);
     }
 }
 

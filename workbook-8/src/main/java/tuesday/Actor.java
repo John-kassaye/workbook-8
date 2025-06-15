@@ -1,4 +1,4 @@
-package Tuesday;
+package tuesday;
 
 public class Actor {
     private String firstName;

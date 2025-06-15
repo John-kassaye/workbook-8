@@ -1,4 +1,4 @@
-package Tuesday;
+package tuesday;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
